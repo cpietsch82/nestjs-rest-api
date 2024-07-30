@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -13,6 +13,12 @@ export class TodosService {
 
   async create(createTodoDto: CreateTodoDto) {
     console.log('This action adds a new todo');
+    const existing_todo = await this.todoModel.findOne({
+      todo: createTodoDto.todo,
+    });
+    if (existing_todo) {
+      throw new HttpException('Todo already exists.', HttpStatus.FOUND);
+    }
     return await this.todoModel.create(createTodoDto);
   }
 
@@ -23,7 +29,11 @@ export class TodosService {
 
   async findOne(id: string) {
     console.log(`This action returns a #${id} todo`);
-    return await this.todoModel.findById(id);
+    const existing_todo = await this.todoModel.findById(id);
+    if (existing_todo) {
+      return existing_todo;
+    }
+    throw new HttpException('Todo was not found.', HttpStatus.NOT_FOUND);
   }
 
   async update(id: string, updateTodoDto: UpdateTodoDto) {
