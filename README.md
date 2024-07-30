@@ -43,11 +43,10 @@ $ pnpm install
 
 ## Running the app
 
+Make sure you have all necessary environment variables in your .env.development before you start the application.
+
 ```bash
 # development
-$ pnpm run start
-
-# watch mode
 $ pnpm run start:dev
 
 # production mode

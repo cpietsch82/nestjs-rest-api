@@ -4,6 +4,7 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Query } from 'mongoose';
 import { Todo, TodoModel } from './schemas/todo.schema';
+import { QueryParams } from './todos.interfaces';
 
 @Injectable()
 export class TodosService {
@@ -22,9 +23,20 @@ export class TodosService {
     return await this.todoModel.create(createTodoDto);
   }
 
-  async findAll() {
+  async findAll(params: QueryParams) {
     console.log(`This action returns all todos`);
-    return await this.todoModel.find();
+    let todos = [];
+    if (params.sort) {
+      todos = await this.todoModel
+        .find()
+        .sort({ [params.sort_by]: params.sort });
+    } else {
+      todos = await this.todoModel.find();
+    }
+    if (params.filter) {
+      return todos.filter((todo) => todo[params.filter] === params.filter_by);
+    }
+    return todos;
   }
 
   async findOne(id: string) {
