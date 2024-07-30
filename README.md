@@ -67,8 +67,13 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
-## Support
+## TODO
 
+- extended tests
+- swagger ui support
+- filter and sort of todos
+
+## Support
 
 ## Stay in touch
 
