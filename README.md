@@ -10,16 +10,15 @@
 ## Description
 
 A little REST Api written in Typescript using the NestJS Framework ([Nest](https://github.com/nestjs/nest)).
-This should be a basic framework with lots of services pre installed and preconfigured like Authentication, Database Connection (via Mongoose) etc.
+This should be a basic framework with lots of services pre installed and preconfigured like Authentication, Database Connection (via Mongoose), Service Health Check, Webpack Bundling, etc.
 
 ## Authentication
 
-For authentication i am using the Passport with the JWT strategy. All necessary informations about the npm package can you find here ([Passport](https://github.com/jaredhanson/passport)). Or here with an example integration in NestJS [Passport Integration in NestJS](https://docs.nestjs.com/recipes/passport).
+For authentication i am using the Passport package with the JWT strategy. All necessary informations about the npm package can you find here ([Passport](https://github.com/jaredhanson/passport)). Or here with an example integration in NestJS [Passport Integration in NestJS](https://docs.nestjs.com/recipes/passport).
 
 ## Installation
 
-This repository needs a local mongodb connection or docker. If you are not familiar with setting up a local mongodb server, just use the docker compose file.
-This generates a local mongodb server for you. Make sure you have the right mongodb connection credentials in `app.module.ts`.
+This repository needs a local mongodb connection or docker. If you are not familiar with setting up a local mongodb server, just use the docker compose file. This generates a local mongodb server for you. Make sure you have the right mongodb connection credentials in `app.module.ts`.
 
 #### Docker
 
