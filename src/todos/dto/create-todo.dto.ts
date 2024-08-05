@@ -1,6 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 
 export class CreateTodoDto {
+  @ApiProperty({ required: false })
+  readonly user_id: Types.ObjectId;
+
   @ApiProperty()
   readonly todo: string;
 

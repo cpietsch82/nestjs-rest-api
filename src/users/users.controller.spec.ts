@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TodosController } from './todos.controller';
-import { TodosService } from './todos.service';
+import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Todo, TodoSchema } from './schemas/todo.schema';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
 import { validate } from '../../common/validators/env.validaton';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
 import { ConfigModule } from '@nestjs/config';
+import { UsersService } from './users.service';
+import { User, UserSchema } from './schemas/user.schema';
 
-describe('TodosController', () => {
-  let controller: TodosController;
+describe('UsersController', () => {
+  let controller: UsersController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -28,25 +28,21 @@ describe('TodosController', () => {
         }),
         MongooseModule.forFeatureAsync([
           {
-            name: Todo.name,
+            name: User.name,
             useFactory: () => {
-              return TodoSchema;
+              return UserSchema;
             },
           },
         ]),
       ],
-      controllers: [TodosController],
-      providers: [TodosService],
+      controllers: [UsersController],
+      providers: [UsersService],
     }).compile();
 
-    controller = module.get<TodosController>(TodosController);
+    controller = module.get<UsersController>(UsersController);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
-  });
-
-  describe('findAll', () => {
-    it('should return a list of todos', async () => {});
   });
 });

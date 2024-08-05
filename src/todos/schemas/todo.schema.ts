@@ -1,8 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Model } from 'mongoose';
+import { HydratedDocument, Model, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Todo {
+  @Prop({ required: true })
+  user_id: Types.ObjectId;
+
   @Prop({ required: true })
   todo: string;
 

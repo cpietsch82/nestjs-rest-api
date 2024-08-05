@@ -12,6 +12,9 @@ import { MongooseConfigService } from '../../configuration/mongoose.config.servi
 import databaseConfig from '../../configuration/database.config';
 import baseConfig from '../../configuration/base.config';
 import { validate } from '../../common/validators/env.validaton';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './jwt.strategy';
+import { User, UserSchema } from '../../src/users/schemas/user.schema';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -19,7 +22,6 @@ describe('AuthController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        UsersModule,
         ConfigModule.forRoot({
           isGlobal: true,
           envFilePath: `.env.${process.env.NODE_ENV}`,
@@ -31,7 +33,17 @@ describe('AuthController', () => {
         MongooseModule.forRootAsync({
           useClass: MongooseConfigService,
         }),
+        MongooseModule.forFeatureAsync([
+          {
+            name: User.name,
+            useFactory: () => {
+              return UserSchema;
+            },
+          },
+        ]),
         ConfigModule.forFeature(jwtConfig),
+        UsersModule,
+        PassportModule,
         JwtModule.registerAsync({
           imports: [ConfigModule.forFeature(jwtConfig)],
           useFactory: (config: ConfigType<typeof jwtConfig>) => {
@@ -50,6 +62,7 @@ describe('AuthController', () => {
           provide: APP_GUARD,
           useClass: AuthGuard,
         },
+        JwtStrategy,
       ],
       controllers: [AuthController],
     }).compile();

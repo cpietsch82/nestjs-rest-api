@@ -6,6 +6,8 @@ import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
 import * as compression from 'compression';
 
+declare const module: any;
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     abortOnError: false,
@@ -23,6 +25,11 @@ async function bootstrap() {
 
   app.use(cookieParser());
   app.use(compression());
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 
   const configService = app.get(ConfigService);
   const port = configService.get<string | number>('server.port') as number;

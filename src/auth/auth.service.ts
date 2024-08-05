@@ -1,25 +1,45 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { User, UserDocument } from '../../src/users/schemas/user.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
+    @InjectModel(User.name) private userModel: Model<User>,
     private jwtService: JwtService,
   ) {}
 
-  async signIn(
-    username: string,
-    pass: string,
-  ): Promise<{ access_token: string }> {
-    const user = await this.usersService.findOne(username);
-    if (user?.password !== pass) {
-      throw new UnauthorizedException();
-    }
-    const payload = { sub: user.userId, username: user.username };
+  async signIn(user: UserDocument) {
+    const payload = { username: user.username, sub: user._id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
+  }
+
+  async register(username: string, password: string) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new this.userModel({
+      username,
+      password_hash: hashedPassword,
+    });
+    return newUser.save();
+  }
+
+  async validateUser(
+    username: string,
+    password: string,
+  ): Promise<UserDocument | null> {
+    const user = await this.userModel.findOne({ username }).exec();
+    if (!user) {
+      throw new NotFoundException('User does not exist');
+    }
+    if (user && (await bcrypt.compare(password, user.password_hash))) {
+      const { ...result } = user.toObject();
+      return result as UserDocument;
+    }
+    return null;
   }
 }

@@ -12,6 +12,10 @@
 A little REST Api written in Typescript using the NestJS Framework ([Nest](https://github.com/nestjs/nest)).
 This should be a basic framework with lots of services pre installed and preconfigured like Authentication, Database Connection (via Mongoose) etc.
 
+## Authentication
+
+For authentication i am using the Passport with the JWT strategy. All necessary informations about the npm package can you find here ([Passport](https://github.com/jaredhanson/passport)). Or here with an example integration in NestJS [Passport Integration in NestJS](https://docs.nestjs.com/recipes/passport).
+
 ## Installation
 
 This repository needs a local mongodb connection or docker. If you are not familiar with setting up a local mongodb server, just use the docker compose file.
@@ -30,6 +34,7 @@ After running the build process, you can stop Docker container with
 ### Add Sample Data to MongoDB Database
 
 To add some sample data to your mongodb connection just run the following script.
+The password of the DevelopmentUser ist "test". Later you can add new users with different passwords.
 
 ```bash
 $ pnpm run seed
@@ -55,6 +60,8 @@ $ pnpm run start:prod
 
 ## Test
 
+For testing we are using a mongodb in-memory server
+
 ```bash
 # unit tests
 $ pnpm run test
@@ -66,11 +73,19 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
-## TODO
+## NEW FEATURES
+
+- added auth/register route to add new users
+- added passport authentication package with jwt strategy
+- added webpack hot module reload
+- integrate mongodb in-memory server for running tests
+
+## TODOS
 
 - extended tests
-- swagger ui support
-- filter and sort of todos
+- add middleware to handle request limits
+- add middleware to handle user authorization (CRUD for todos)
+- add update password method
 
 ## Support
 
