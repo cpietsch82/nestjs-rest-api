@@ -14,6 +14,7 @@ import { MongooseConfigService } from '../configuration/mongoose.config.service'
 import { SeedService } from '../src/lib/seed.service';
 import { User, UserSchema } from './users/schemas/user.schema';
 import { Todo, TodoSchema } from './todos/schemas/todo.schema';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { Todo, TodoSchema } from './todos/schemas/todo.schema';
     AuthModule,
     UsersModule,
     TodosModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService, SeedService],

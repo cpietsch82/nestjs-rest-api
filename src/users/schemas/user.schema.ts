@@ -27,9 +27,9 @@ export type UserModel = Model<UserDocument> & UserStatics;
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-UserSchema.methods.serialized = (): SerializedUser => {
+UserSchema.methods.serialized = function (): SerializedUser {
   return {
-    _id: new Types.ObjectId(),
-    username: 'TestUser',
+    _id: this._id,
+    username: this.username,
   };
 };
