@@ -54,6 +54,9 @@ Make sure you have all necessary environment variables in your .env.development 
 # development
 $ pnpm run start:dev
 
+# development with hmr
+$ pnpm run start:dev:hmr
+
 # production mode
 $ pnpm run start:prod
 ```
