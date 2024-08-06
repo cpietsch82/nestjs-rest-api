@@ -13,7 +13,6 @@ export class TodosService {
   ) {}
 
   async create(createTodoDto: CreateTodoDto) {
-    console.log('This action adds a new todo');
     const existing_todo = await this.todoModel.findOne({
       todo: createTodoDto.todo,
     });
@@ -27,7 +26,6 @@ export class TodosService {
     user_id: Types.ObjectId,
     params: QueryParams,
   ): Promise<TodoDocument[]> {
-    console.log(`This action returns all todos`);
     let sort = {};
     if (params.sort && params.sort_by) {
       sort = { [params.sort_by]: params.sort };
@@ -40,7 +38,6 @@ export class TodosService {
   }
 
   async findOne(user_id: Types.ObjectId, id: string) {
-    console.log(`This action returns a #${id} todo`);
     const existing_todo = await this.todoModel.findOne({
       _id: id,
       user_id: user_id,
@@ -56,7 +53,6 @@ export class TodosService {
     id: string,
     updateTodoDto: UpdateTodoDto,
   ) {
-    console.log(`This action updates a #${id} todo`);
     return await this.todoModel.updateOne(
       {
         user_id: user_id,
