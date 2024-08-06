@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, Put, Request } from '@nestjs/common';
 import { ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { UpdateUserDto } from './dto/update.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { RequestWithUser } from 'src/app.interfaces';
 
 @ApiTags('users')
