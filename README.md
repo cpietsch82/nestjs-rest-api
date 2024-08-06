@@ -77,6 +77,7 @@ $ pnpm run test:cov
 
 ## NEW FEATURES
 
+- added update password method
 - added auth/register route to add new users
 - added passport authentication package with jwt strategy
 - added webpack hot module reload
@@ -87,7 +88,6 @@ $ pnpm run test:cov
 - extended tests
 - add middleware to handle request limits
 - add middleware to handle user authorization (CRUD for todos)
-- add update password method
 
 ## Support
 
