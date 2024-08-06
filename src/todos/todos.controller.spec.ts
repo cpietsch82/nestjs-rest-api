@@ -88,7 +88,9 @@ describe('TodosController', () => {
       expect(result).toBeDefined();
       expect(result).toBe(newTodo);
     });
+  });
 
+  describe('findAll', () => {
     it('should find all todos from a specific user', async () => {
       jest
         .spyOn(controller, 'findAll')
@@ -98,7 +100,9 @@ describe('TodosController', () => {
       expect(result).toBeDefined();
       expect(result).toBe(todosMock);
     });
+  });
 
+  describe('findOne', () => {
     it('should find one todo from a specific user', async () => {
       jest
         .spyOn(controller, 'findOne')
@@ -111,7 +115,9 @@ describe('TodosController', () => {
       expect(result).toBeDefined();
       expect(result).toBe(todosMock[0]);
     });
+  });
 
+  describe('update', () => {
     it('should update a todo from a specific user', async () => {
       const writeResultMock = {} as UpdateWriteOpResult;
       const updateTodoDto: UpdateTodoDto = {
@@ -130,7 +136,9 @@ describe('TodosController', () => {
       expect(result).toBeDefined();
       expect(result).toBe(writeResultMock);
     });
+  });
 
+  describe('remove', () => {
     it('should remove a todo from a specific user', async () => {
       const removedMock = {
         ok: true,

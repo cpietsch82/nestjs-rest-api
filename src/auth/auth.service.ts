@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from '../../src/users/schemas/user.schema';
 import { Model } from 'mongoose';
@@ -39,7 +44,8 @@ export class AuthService {
     if (user && (await bcrypt.compare(password, user.password_hash))) {
       const { ...result } = user.toObject();
       return result as UserDocument;
+    } else {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
-    return null;
   }
 }

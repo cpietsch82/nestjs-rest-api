@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Get,
   Request,
-  HttpException,
+  // HttpException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Public } from '../../common/decorators/public.decorator';
@@ -30,9 +30,6 @@ export class AuthController {
       loginDto.username,
       loginDto.password,
     );
-    if (!user) {
-      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
-    }
     return this.authService.signIn(user);
   }
 

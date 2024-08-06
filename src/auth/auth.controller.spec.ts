@@ -15,6 +15,7 @@ import { validate } from '../../common/validators/env.validaton';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { User, UserSchema } from '../../src/users/schemas/user.schema';
+import { LoginDto } from './dto/login.dto';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -72,5 +73,24 @@ describe('AuthController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  describe('login', () => {
+    it('should login successfully', async () => {
+      const fake_access_token = {
+        access_token: 'fake_access_token',
+      };
+      jest
+        .spyOn(controller, 'login')
+        .mockImplementation(async () => fake_access_token);
+
+      const loginDto = {
+        username: 'test_user',
+        password: 'test_password',
+      } as LoginDto;
+      const result = await controller.login(loginDto);
+      expect(result).toBeDefined();
+      expect(result).toBe(fake_access_token);
+    });
   });
 });
