@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
-import { validate } from '../../common/validators/env.validaton';
+import { validate } from '../../common/validators/env.validation';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
 import { ConfigModule } from '@nestjs/config';

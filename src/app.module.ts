@@ -8,7 +8,7 @@ import { UsersModule } from './users/users.module';
 import { TodosModule } from './todos/todos.module';
 import baseConfig from '../configuration/base.config';
 import databaseConfig from '../configuration/database.config';
-import { validate } from '../common/validators/env.validaton';
+import { validate } from '../common/validators/env.validation';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from '../configuration/mongoose.config.service';
 import { SeedService } from '../src/lib/seed.service';

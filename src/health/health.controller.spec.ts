@@ -4,7 +4,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
-import { validate } from '../../common/validators/env.validaton';
+import { validate } from '../../common/validators/env.validation';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
 

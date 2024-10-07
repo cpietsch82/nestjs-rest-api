@@ -4,7 +4,7 @@ import { TodosService } from './todos.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Todo, TodoDocument, TodoSchema } from './schemas/todo.schema';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
-import { validate } from '../../common/validators/env.validaton';
+import { validate } from '../../common/validators/env.validation';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
 import { ConfigModule } from '@nestjs/config';

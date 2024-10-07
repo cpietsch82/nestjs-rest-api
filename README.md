@@ -88,6 +88,7 @@ $ pnpm run test:cov
 - extended tests
 - add middleware to handle request limits
 - add middleware to handle user authorization (CRUD for todos)
+- added encryption to jwt sign up
 
 ## Support
 

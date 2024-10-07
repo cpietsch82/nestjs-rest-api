@@ -4,9 +4,9 @@ import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health.controller';
 import { MongooseConfigService } from 'configuration/mongoose.config.service';
 import { ConfigModule } from '@nestjs/config';
-import baseConfig from 'configuration/base.config';
-import databaseConfig from 'configuration/database.config';
-import { validate } from 'common/validators/env.validaton';
+import baseConfig from '../../configuration/base.config';
+import databaseConfig from '../../configuration/database.config';
+import { validate } from '../../common/validators/env.validation';
 
 @Module({
   imports: [

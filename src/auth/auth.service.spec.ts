@@ -10,7 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
-import { validate } from '../../common/validators/env.validaton';
+import { validate } from '../../common/validators/env.validation';
 import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { User, UserSchema } from '../../src/users/schemas/user.schema';

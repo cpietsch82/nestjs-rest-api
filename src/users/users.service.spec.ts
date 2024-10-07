@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { MongooseConfigService } from '../../configuration/mongoose.config.service';
-import { validate } from '../../common/validators/env.validaton';
+import { validate } from '../../common/validators/env.validation';
 import baseConfig from '../../configuration/base.config';
 import databaseConfig from '../../configuration/database.config';
 import { ConfigModule } from '@nestjs/config';
